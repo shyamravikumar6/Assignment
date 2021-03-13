@@ -1,0 +1,19 @@
+{
+  "name": "product-html-jquery",
+  "version": "1.0.0",
+  "description": "Demo for the product table",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Ravi kumar",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "html": "^1.0.0",
+    "http": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
