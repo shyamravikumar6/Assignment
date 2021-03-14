@@ -14,5 +14,5 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.get('/',(req,res)=>res.render('pages/Home'));
 app.get('/chess',(req,res)=>res.render('pages/index'));
-server.listen(4000,(msg)=>console.log('listening port 4000'));
+server.listen(4041,(msg)=>console.log('listening port 4000'));
 
