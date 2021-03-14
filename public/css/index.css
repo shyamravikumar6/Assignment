@@ -176,3 +176,17 @@ body,html{
           height: 50px;
         }
     }
+
+  .center-magic{
+      width: 100%;
+      height: 400px;
+      left: 0;
+      
+  }
+
+
+    footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
