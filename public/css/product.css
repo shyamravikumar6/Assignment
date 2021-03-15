@@ -10,9 +10,11 @@ header{
     z-index: 1000;
     width: 100%;
     top: 0;
+    margin-bottom: 100px;
 }
 
 .logo{
+    height: 50px;
     float: left;
 }
 
@@ -28,13 +30,14 @@ header::after{
 
 }
 nav ul{
+    padding-top: 30px;
     margin: 0;
     padding: 0;
 
 }
 
 nav li{
-    margin-top: 5px;
+    margin-top: 20px;
     display: inline-block;
     list-style: none;
     margin-left: 50px;
@@ -47,6 +50,43 @@ nav a{
     text-transform:uppercase;   
     color:#444;
 
+}
+
+input:placeholder-shown+.peracc__my-addrs2-line--placeholder {
+    display: none;
+}
+
+.standart-button {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 18px 30px;
+    border: 1px solid transparent;
+    border-radius: 26px;
+    font-family: Quicksand,sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.standart-button--color2 {
+    background: #0095e9;
+    color: #fff!important;
+}
+
+
+.peracc__my-addrs2-input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-family: Nunito Sans,sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #000;
 }
 
 nav a::before{
@@ -129,12 +169,69 @@ h1.small-header-h2, h3.small-header-h2 {
     position: relative;
 }
 
+.filter__drop {
+    border-top: 1px solid #d7d7d7;
+}
 
 .op-contact-us {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
+
+.filter__drop-label {
+    display: block;
+    padding-left: 30px;
+    font-family: Nunito Sans,sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    color: #707070;
+    position: relative;
+    cursor: pointer;
+}
+
+.op-contact-us__line--st7 {
+    margin-bottom: 5px;
+    font-family: Nunito Sans,sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26px;
+    color: #767676;
+}
+
+input.error {
+    border: 1px dashed red;
+    font-weight: 300;
+    color: red;
+}
+
+label.error {
+    color: red;
+    font-size: 1rem;
+    display: block;
+    margin-top: 5px;
+}
+
+
+.op-contact-us__textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: none;
+}
+
+
+.field-validation-error {
+    color: red;
+    font-size: 12px;
+}
+
+
+
 
 footer{
 

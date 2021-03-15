@@ -1,4 +1,4 @@
-<div class="temp-container">
+<div class="temp-container" style="margin-top: 50px;">
     <div class="other-pages">
         <div class="container-fluid">
             <div class="header-h3">
@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="op-contact-us__block op-contact-us__block--pad">
-                            
+
                             <div class="op-contact-us__content">
                                 <div class="op-contact-us__line">
                                     <div class="row">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="op-contact-us__block op-contact-us__block--pad">
-                 
+
                             <div class="op-contact-us__content">
                                 <div class="op-contact-us__line">
                                     <div class="op-contact-us__line--st1">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="op-contact-us__block op-contact-us__block--pad">
-                        
+
                             <div class="op-contact-us__content">
                                 <div class="op-contact-us__line">
                                     <div class="op-contact-us__line--st1">
@@ -105,10 +105,10 @@
                     </div>
                     <div class="col-lg-6" id="contact-email">
                         <div class="op-contact-us__block op-contact-us__block--height">
-                            <form action="/companyinfo/contactus" method="post" novalidate="novalidate">
+                            <form  id='contact' action="submit"  novalidate="novalidate">
                                 <div class="op-contact-us__line--st6">Have a question? We’re here to help!</div>
                                 <div class="peracc__my-addrs2-line peracc__my-addrs2-line--active">
-                                    <input class="peracc__my-addrs2-input" data-val="true"
+                                    <input class="peracc__my-addrs2-input" data-val="true" required
                                         data-val-required="Enter your name" id="FullName" name="FullName"
                                         placeholder="Your Name *" type="text" value="">
                                     <div class="peracc__my-addrs2-line--placeholder">Your Name *</div>
@@ -118,9 +118,9 @@
                                 <div class="peracc__my-addrs2-line peracc__my-addrs2-line--active">
                                     <input class="peracc__my-addrs2-input" data-val="true" data-val-email="Wrong email"
                                         data-val-required="Enter email" id="Email" name="Email"
-                                        placeholder="Your Email *" type="email" value="">
+                                        placeholder="Your Email *" type="email" value="" required >
                                     <div class="peracc__my-addrs2-line--placeholder">Your Email *</div>
-                                    <span class="field-validation-valid" data-valmsg-for="Email"
+                                    <span class="field-validation-valid" data-valmsg-for="Email" 
                                         data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="peracc__my-addrs2-line peracc__my-addrs2-line--active">
@@ -130,23 +130,7 @@
                                     <span class="field-validation-valid" data-valmsg-for="PhoneNumber"
                                         data-valmsg-replace="true"></span>
                                 </div>
-                                <div class="peracc__my-addrs2-line peracc__my-addrs2-line--active">
-                                    <select name="customer-class" style="display: none;">
-                                        <option value="Personal">Personal</option>
-                                        <option value="School">School</option>
-                                        <option value="Business">Business</option>
-                                        <option value="Team">Team</option>
-                                    </select>
-                                    <div class="custom-select-menu" tabindex="0" id="customer-class"><label
-                                            class="selection-made">Personal</label>
-                                        <ul data-select-name="customer-class" style="display: none;">
-                                            <li data-option-value="Personal" class="selected">Personal</li>
-                                            <li data-option-value="School" class="">School</li>
-                                            <li data-option-value="Business" class="">Business</li>
-                                            <li data-option-value="Team" class="">Team</li>
-                                        </ul><input type="hidden" name="customer-class" value="Personal">
-                                    </div>
-                                </div>
+                         
                                 <div class="peracc__my-addrs2-line addrs-line-no-margin-bottom">
                                     <div class="op-contact-us__line--st7">Your Message *</div>
                                     <textarea class="op-contact-us__textarea" cols="20" data-val="true"
@@ -159,7 +143,8 @@
                                     style="border:3px solid #183AB2;margin-left:0px;margin-right:0px; margin-bottom:25px;">
                                     <div class="col-12" id="icon-col"
                                         style="background-color:#183AB2;color:white;font-family:Oswald;font-weight:700;display:flex;align-items:center;">
-                                       
+                                        <img style="width:70px;height:70px;padding:10px;"
+                                            src="https://www.entripy.com/Content/Images/80_entripy.png">
                                         <span style="line-height:1;margin: 0 auto;">
                                             Get 10% Off Your First Order
                                         </span>
@@ -176,8 +161,13 @@
                                             Newsletter</label>
                                     </div>
                                 </div>
-                               
-                            
+                                <div>
+
+                                </div>
+                                <div id="attachment-list">
+                                    <div id="uploaded-file-header" style="display:none;" class="contactus-label">
+                                        Uploaded files</div>
+                                </div>
                                 <div class="captcha-box">
                                     <span id="recaptcha">
                                         <script src="https://www.google.com/recaptcha/api.js" async="" defer="">
@@ -187,9 +177,9 @@
                                             data-theme="light">
                                             <div style="width: 304px; height: 78px;">
                                                 <div><iframe
-                                                        src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcL8RsTAAAAALdcKI8lO9KlJ1S1swDykm6d90Hu&amp;co=aHR0cHM6Ly93d3cuZW50cmlweS5jb206NDQz&amp;hl=en&amp;v=a7xT2d71Jli62wQMfeUUrLcO&amp;theme=light&amp;size=normal&amp;cb=fsi6vulh5t4f"
+                                                        src="https://www.google.com/recaptcha/api2/anchor?ar=2&amp;k=6LcL8RsTAAAAALdcKI8lO9KlJ1S1swDykm6d90Hu&amp;co=aHR0cHM6Ly93d3cuZW50cmlweS5jb206NDQz&amp;hl=en&amp;v=a7xT2d71Jli62wQMfeUUrLcO&amp;theme=light&amp;size=normal&amp;cb=3y0th89s491"
                                                         width="304" height="78" role="presentation"
-                                                        name="a-bey0xb2o5ivt" frameborder="0" scrolling="no"
+                                                        name="a-3s01vph8va58" frameborder="0" scrolling="no"
                                                         sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
                                                 </div><textarea id="g-recaptcha-response-1" name="g-recaptcha-response"
                                                     class="g-recaptcha-response"
@@ -227,7 +217,9 @@
                                                     <div class="qq-upload-button"
                                                         style="position: relative; overflow: hidden; direction: ltr;">
                                                         <div class="qq-upload-text"><a
-                                                                class="op-contact-us__attach">Attachfile</a></div><input type="file" name="file"
+                                                                class="op-contact-us__attach"><img
+                                                                    src="https://www.entripy.com/Themes/Entripy/Content/17/images/test-product-img/need-ico.png">Attach
+                                                                file</a></div><input type="file" name="file"
                                                             title="Upload image"
                                                             style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;">
                                                     </div>
@@ -235,7 +227,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      
+                                        <div class="col-auto">
+                                            <input class="standart-button standart-button--color2" type="submit"
+                                                name="send-email" value="Send">
+                                        </div>
                                     </div>
                                 </div>
                                 <input id="selectedCustomerClass" name="SelectedCustomerClass" type="hidden"
@@ -247,6 +242,44 @@
             </div>
         </div>
     </div>
-
-  
 </div>
+<script>
+    $(document).ready(function(e){
+        $('#contact').on('submit',function(e){
+            e.preventDefault();
+            $(this).validate({
+                
+    rules: {
+      FullName : {
+        required: true,
+        minlength: 3
+      },
+      Email: {
+        required: true,
+        email: true,
+        
+      },
+      Inquiry:{
+          required:true,
+          minlength:20,
+      }
+
+    },
+    messages : {
+      FullName: {
+        minlength: "Name should be at least 3 characters"
+      },
+   
+      email: {
+        email: "The email should be in the format: abc@domain.tld"
+      },
+     
+    },
+    Inquiry:{
+        minlength:"Message should be at least 20 char"
+    }
+            });
+            console.log($(this).serialize(),'Hi');
+        })
+    })
+</script>
