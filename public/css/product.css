@@ -1,0 +1,141 @@
+body{
+    margin: 0;
+    font-family:'Work Sans', sans-serif;
+    font-weight: 300;
+}
+
+header{
+    background: #55d6aa;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+}
+
+.logo{
+    float: left;
+}
+
+
+nav{
+    float: right
+}
+
+header::after{
+    content: '';
+    display: table;
+    clear: both;
+
+}
+nav ul{
+    margin: 0;
+    padding: 0;
+
+}
+
+nav li{
+    margin-top: 5px;
+    display: inline-block;
+    list-style: none;
+    margin-left: 50px;
+    position: relative;
+}
+
+nav a{
+    
+    text-decoration: none;
+    text-transform:uppercase;   
+    color:#444;
+
+}
+
+nav a::before{
+    content: '';
+    display: block;
+    height:  5px;
+    width:0%;
+    top: 0;
+    background-color: #444;
+    position: absolute;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before{
+    width: 100%;
+}
+
+.op-contact-us__block--pad {
+    padding: 30px 30px 30px 140px;
+}
+
+.op-contact-us__ico {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
+.op-contact-us__line {
+    margin-bottom: 15px;
+}
+
+.small-header-contact-h2 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.temp-container .header-h3 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.op-contact-us__ico-cont {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #0057a5;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.op-contact-us__ico-cont svg {
+    fill: #0591e1;
+}
+
+h1.small-header-h2, h3.small-header-h2 {
+    margin-bottom: 0;
+    font-family: Nunito Sans,sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 70px;
+}
+
+#see-on-map {
+    color: #0056ac;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.op-contact-us__line--st1, .op-contact-us__line--st2 {
+    font-size: 18px;
+    line-height: 28px;
+    color: #383838;
+}
+
+.op-contact-us__block {
+    margin-bottom: 30px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #ebebeb;
+    position: relative;
+}
+
+
+.op-contact-us {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer{
+
+}
