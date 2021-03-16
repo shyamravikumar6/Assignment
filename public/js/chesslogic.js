@@ -32,6 +32,7 @@ $(function(){
       if(game.in_check()){
         
           console.log(move,'12234');
+          return ;
       }
       if(game.in_checkmate()){
           console.log(move,'12344');
