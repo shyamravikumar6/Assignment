@@ -13,7 +13,7 @@ exports.getAllProduct = async (req, res) => {
 
 exports.getAllCategory = async (req, res) => {
     try {
-
+        
         let categoryObj = await db.getAllCategory();
         handleRespone(req, res, 200, null, categoryObj);
     } catch (e) {
@@ -24,6 +24,7 @@ exports.getAllCategory = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
     try {
+        if(!req.body) throw "body is Empty";
         let { Name, categoryId } = req.body;
         await db.createProduct({ Name, category: categoryId, productId: { $inc: 1 } });
         handleRespone(req, res, 200, null, 'Successfully Created');
@@ -35,6 +36,7 @@ exports.createProduct = async (req, res) => {
 
 exports.createCategory = async (req, res) => {
     try {
+        if(!req.body) throw "body is Empty";
         let { Name } = req.body;
         let checkExist = await db.getCategory(Name);
         if (!checkExist) db.createCategory(Name);
@@ -46,6 +48,7 @@ exports.createCategory = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
     try {
+        if(!req.query) throw "Id is empty";
         const Id = req.query.Id;
         await db.deleteProduct(Id);
         handleRespone(req, res, 200, null, 'Successfully Deleted');
@@ -56,6 +59,7 @@ exports.deleteProduct = async (req, res) => {
 
 exports.deleteCategory = async (req, res) => {
     try {
+        if(!req.query) throw "Id is empty";
         const Id = req.query.Id;
         await db.deleteProduct(Id);
         handleRespone(req, res, 200, null, 'Successfully Deleted');
