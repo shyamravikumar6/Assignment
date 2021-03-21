@@ -1,6 +1,6 @@
 const { dbHelper } = require('../helper/dbhelper')
 const db = new dbHelper();
-export const getAllProduct = async (req, res) => {
+exports.getAllProduct = async (req, res) => {
     try {
         let productObj = await db.getAllProduct();
         handleRespone(req, res, 200, null, productObj);
@@ -11,7 +11,7 @@ export const getAllProduct = async (req, res) => {
 }
 
 
-export const getAllCategory = async (req, res) => {
+exports.getAllCategory = async (req, res) => {
     try {
 
         let categoryObj = await db.getAllCategory();
@@ -22,7 +22,7 @@ export const getAllCategory = async (req, res) => {
 }
 
 
-export const createProduct = async (req, res) => {
+exports.createProduct = async (req, res) => {
     try {
         let { Name, categoryId } = req.body;
         await db.createProduct({ Name, category: categoryId, productId: { $inc: 1 } });
@@ -33,7 +33,7 @@ export const createProduct = async (req, res) => {
 
 }
 
-export const createCategory = async (req, res) => {
+exports.createCategory = async (req, res) => {
     try {
         let { Name } = req.body;
         let checkExist = await db.getCategory(Name);
@@ -44,7 +44,7 @@ export const createCategory = async (req, res) => {
     }
 }
 
-export const deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
     try {
         const Id = req.query.Id;
         await db.deleteProduct(Id);
@@ -54,7 +54,7 @@ export const deleteProduct = async (req, res) => {
     }
 }
 
-export const deleteCategory = async (req, res) => {
+exports.deleteCategory = async (req, res) => {
     try {
         const Id = req.query.Id;
         await db.deleteProduct(Id);
