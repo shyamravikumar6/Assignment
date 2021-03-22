@@ -1,3 +1,2 @@
 # Assignment
-It contains both 
-frontend and backend 
+Frontend Code
