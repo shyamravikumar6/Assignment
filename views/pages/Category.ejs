@@ -1,0 +1,231 @@
+<div class="card-body productTable">
+    <div class="addCategory"><button id="addCategory">Add</button></div>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="categoryTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+
+                    <th title=" name that appears after a message is upvoted like the link text">Category Id</th>
+                    <th title=" the link that is from the sponsor name">Category Name</th>
+                    <th title="To add sponsor details for the particular sponsor , details like credit top rate etc.">
+                        Update Product</th>
+                    <th title="To delete Sponsor">Delete Product</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="modal fade" id="updatecategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
+                    <button id='close' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 4rem; padding-top: 2rem;">
+
+
+                    <form class="user" id="updateCategoryForm">
+
+
+                        <div class="form-group row ">
+
+                            <div class="col-sm-6" style="padding-left: 0%;">
+                                <label>CategoryName</label>
+                                <input type="text" required class="form-control form-control-user" id="categoryName"
+                                    name="categoryName" placeholder="CategoryName">
+                            </div>
+
+                        </div>
+                        <hr>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 " style="margin-left: 6rem;">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Update
+                            </div>
+                        </div>
+                        </button>
+
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="addcategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+                    <button id='close' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 4rem; padding-top: 2rem;">
+
+
+                    <form class="user" id="addCategoryForm">
+
+
+                        <div class="form-group row ">
+
+                            <div class="col-sm-6" style="padding-left: 0%;">
+                                <label>CategoryName</label>
+                                <input type="text" required class="form-control form-control-user" id="categoryName"
+                                    name="categoryName" placeholder="CategoryName">
+                            </div>
+
+                        </div>
+                        <hr>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 " style="margin-left: 6rem;">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    ADD
+                            </div>
+                        </div>
+                        </button>
+
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+
+        $(document).ready(function (e) {
+            var Id;
+            var url = 'http://localhost:4001';
+            var categoryTable = $('#categoryTable').DataTable({
+
+                "pagingType": "simple_numbers",
+                "serverSide": true,
+                responsive: true,
+                "ordering": false,
+                //"pageLength" : 10,
+                "processing": true,
+                ajax:
+                {
+                    url: `${url}/category/getAll`,
+                    type: 'POST',
+                    error: function (e) {
+                        const errors = e.responseText;
+                        alert(e.responseText)
+                        console.log(e.responseText, JSON.stringify(e.responseJSON));
+                    }
+                    // return JSON string
+                },
+
+                "columns": [
+
+                    {
+                        "data": "categoryId"
+                    },
+                    {
+                        "data": "categoryName"
+                    },
+
+                    {
+                        "data": undefined, defaultContent: `<button  value ='Edit' >Edit Detail</button>`
+                    },
+                    {
+                        "data": undefined, defaultContent: `<button  value ='Delete'>Delete</button>`
+                    }
+
+                ],
+
+                "language": {
+
+                    "processing": " <img class='centered' style='z-index:1;'src='public/img/Loadingstars.gif' >",
+                    searchPlaceholder: "Enter text here to search"
+
+                },
+
+            });
+
+            categoryTable.on('click', "button", function (e) {
+                var data = categoryTable.row($(this).parents('tr')).data();
+                console.log(data);
+                Id = data.categoryId;
+                if (e.target.value == 'Edit') {
+                    console.log('hi');
+                    $('#updatecategoryModal').modal('show');
+                } else {
+
+                    $.ajax({
+                        url: `${url}/category/delete?Id=${Id}`,
+                        method: 'delete',
+                        success: function (e) {
+                           categoryTable.ajax.reload();
+                            // window.location = '/category';
+                        },
+                        error: function (e) {
+                            alert(e.responseText);
+                        }
+                    })
+                }
+            })
+
+
+
+
+            $('#addCategory').click(function (e) {
+                console.log('hi');
+                $('#addcategoryModal').modal('show');
+            })
+
+
+            $('#addCategoryForm').on('submit', function (e) {
+
+                e.preventDefault();
+                console.log($(this).serialize());
+                $.ajax({
+                    url: `${url}/category/create`,
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function (e) {
+                        categoryTable.ajax.realod();
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+                })
+            });
+
+            $('#updateCategoryForm').on('submit', function (e) {
+                e.preventDefault();
+                console.log(Id);
+                $.ajax({
+                    url: `${url}/category/update?Id=${Id}`,
+                    method: 'PUT',
+                    data: $(this).serialize(),
+                    success: function (e) {
+                         window.location = '/category';
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                    }
+                })
+            })
+        })
+
+    </script>

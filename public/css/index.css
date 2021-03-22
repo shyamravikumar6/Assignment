@@ -269,6 +269,9 @@ margin-bottom: 30px;
 }
 
 
+
+
+
   .product-card__color--active::after {
     content: "";
     display: block;

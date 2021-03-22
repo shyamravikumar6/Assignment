@@ -1,0 +1,260 @@
+<div class="card-body productTable">
+  <div class="addCategory"><button id="addProduct">Add</button></div>
+  <div class="table-responsive">
+    <table class="table table-bordered" id="productTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+
+          <th title=" name that appears after a message is upvoted like the link text">Product Id</th>
+          <th title=" the link that is from the sponsor name">Product Name</th>
+          <th title="To add sponsor details for the particular sponsor , details like credit top rate etc.">
+            Category Id</th>
+          <th title="To add sponsor details for the particular sponsor , details like credit top rate etc.">
+            Category Name</th>
+          <th title="To add sponsor details for the particular sponsor , details like credit top rate etc.">
+            Update Product</th>
+          <th title="To delete Sponsor">Delete Product</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+
+      </tbody>
+
+    </table>
+  </div>
+
+  <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+          <button id='close' type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 4rem; padding-top: 2rem;">
+
+
+          <form class="user" id="addProductForm">
+
+
+            <div class="form-group row ">
+
+              <div class="col-sm-6" style="padding-left: 0%;">
+                <label>Product Name</label>
+                <input type="text" required class="form-control form-control-user" id="productName" name="productName"
+                  placeholder="Product Name">
+              </div>
+              <div class="col-sm-6 mb-3 mb-sm-0" style=" padding-right: 0;">
+                <label>Category</label>
+                <select id="product"></select>
+              </div>
+            </div>
+            <hr>
+
+            <div class="form-group row">
+              <div class="col-sm-6 " style="margin-left: 6rem;">
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                  Add
+              </div>
+            </div>
+            </button>
+
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+          <button id='close' type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 4rem; padding-top: 2rem;">
+
+
+          <form class="user" id="updateProductForm">
+
+
+            <div class="form-group row ">
+
+              <div class="col-sm-6" style="padding-left: 0%;">
+                <label>Product Name</label>
+                <input type="text" required class="form-control form-control-user" id="productName" name="productName"
+                  placeholder="Product Name">
+              </div>
+              <div class="col-sm-6 mb-3 mb-sm-0" style=" padding-right: 0;">
+                <label>Category</label>
+                <select id="product"></select>
+              </div>
+            </div>
+            <hr>
+
+            <div class="form-group row">
+              <div class="col-sm-6 " style="margin-left: 6rem;">
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                  Add
+              </div>
+            </div>
+            </button>
+
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <script>
+
+    $(document).ready(function (e) {
+     let CategoryData=[],categoryId;
+      $("[id='product']").html("<option id=''>Select</option>")
+      var Id;
+      var url = 'http://localhost:4001';
+      $.ajax({
+        url:`${url}/category/getAll`,
+        method:'POST',
+        data:{extractAll:true},
+        success:function(data){
+          CategoryData=data;
+          for(let i=0;i<data.length;++i ){
+          if($("[id='product']").find('option[id="'+ data[i]._id +'"]').length == 0){
+            $("[id='product']").append('<option id="'+ data[i]._id +'">'+data[i].Name+'</option>')
+      }
+    } 
+        }
+      })
+      
+      $("[id='product']").change(function(e){
+          let Name=$(this).val();
+         let categoryObj =  CategoryData.find(res=>res.Name==Name);
+        categoryId=categoryObj._id;
+        console.log(categoryId,categoryObj);
+      })
+       
+      var ProductTable = $('#productTable').DataTable({
+
+        "pagingType": "simple_numbers",
+        "serverSide": true,
+        responsive: true,
+        "ordering": false,
+        //"pageLength" : 10,
+        "processing": true,
+        ajax:
+        {
+          url: `${url}/product/getAll`,
+          type: 'POST',
+          error: function (e) {
+            const errors = e.responseText
+            console.log(e.responseText, JSON.stringify(e.responseJSON));
+          }
+          // return JSON string
+        },
+
+        "columns": [{
+          "data": "productId"
+        },
+        {
+          "data": "productName"
+        },
+        {
+          "data": "categoryId"
+        },
+        {
+          "data": "categoryName"
+        },
+
+        {
+          "data": undefined, defaultContent: `<button  value ='Edit' >Edit Detail</button>`
+        },
+        {
+          "data": undefined, defaultContent: `<button  value ='Delete'>Delete</button>`
+        }
+
+        ],
+        "language": {
+
+          "processing": " <img class='centered' style='z-index:1;'src='public/img/Loadingstars.gif' >",
+          searchPlaceholder: "Enter text here to search"
+
+        },
+
+
+      });
+
+      ProductTable.on('click', 'button', function (e) {
+        var data = ProductTable.row($(this).parents('tr')).data();
+        Id = data.productId;
+        if (e.target.value == 'Edit') {
+          $('#updateProductModal').modal('show');
+        } else {
+          $.ajax({
+            url: `${url}/product/delete?Id=${Id}`,
+            method: 'delete',
+            success: function (e) {
+              ProductTable.ajax.reload();
+            },
+            error: function (e) {
+              alert(e.responseText);
+            }
+          })
+        }
+      })
+       
+
+     $('#addProduct').click(function(e){
+  
+       $('#addProductModal').modal('show');
+     })
+
+      $('#updateProductForm').on('submit', function (e) {
+        e.preventDefault();
+        console.log(categoryId);
+        $.ajax({
+          url: `${url}/product/update?Id=${Id}`,
+          method: 'PUT',
+          data:$(this).serialize()+'&category='+categoryId,
+          error: function (e) {
+            alert(e.responseText);
+          },
+          success: function (e) {
+            window.location = '/';
+          }
+        })
+      })
+
+      $('#addProductForm').on('submit', function (e) {
+        e.preventDefault();
+        console.log($(this).serialize(),categoryId);
+        $.ajax({
+          url: `${url}/product/create`,
+          method: 'POST',
+          data:$(this).serialize()+'&category='+categoryId,
+          error: function (e) {
+            alert(e.responseText);
+          },
+          success: function (e) {
+            window.location = '/';
+          }
+        })
+      })
+
+    });
+
+
+
+  </script>
