@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema(
             unique: true,
             required: true,
         },
-        Name: {
+        productName: {
             type: String,
             required: true,
             unique: true,
@@ -14,10 +14,14 @@ const productSchema = new mongoose.Schema(
         category: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'category'
+        },
+        createdAt: {
+            type: Number,
+            default: Date.now()
         }
-    }, {
-    timestamps: true
-}
+      
+    }   
+   
 )
 
 

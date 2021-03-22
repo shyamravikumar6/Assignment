@@ -11,10 +11,11 @@ const categorySchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-
-    }, {
-    timestamps: true
-}
+        createdAt: {
+            type: Number,
+            default: Date.now()
+        }
+    },
 )
 
 

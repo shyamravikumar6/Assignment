@@ -1,0 +1,15 @@
+const mongoose = require('mongoose');
+const productSchema =  new mongoose.Schema(
+{
+    productId: {
+     type:Number,
+     require:true,
+     uniquire:true,
+    },
+  
+    Name:{
+     type:String,
+      mongodb+srv://Ravi1997:<password>@cluster0.wsmkf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+     
