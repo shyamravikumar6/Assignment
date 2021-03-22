@@ -124,7 +124,7 @@
      let CategoryData=[],categoryId;
       $("[id='product']").html("<option id=''>Select</option>")
       var Id;
-      var url = 'https://boiling-waters-40594.herokuapp.com';
+      var url = 'http://localhost:4001';
       $.ajax({
         url:`${url}/category/getAll`,
         method:'POST',
