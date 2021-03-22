@@ -114,7 +114,7 @@
 
         $(document).ready(function (e) {
             var Id;
-            var url = 'http://localhost:4001';
+            var url = 'https://boiling-waters-40594.herokuapp.com';
             var categoryTable = $('#categoryTable').DataTable({
 
                 "pagingType": "simple_numbers",
@@ -203,7 +203,8 @@
                     method: 'POST',
                     data: $(this).serialize(),
                     success: function (e) {
-                        categoryTable.ajax.realod();
+                        $('#addcategoryModal').modal('hide');
+                        categoryTable.ajax.reload();
                     },
                     error: function (e) {
                         alert(e.responseText);
